@@ -18,7 +18,7 @@ const SignUp = () => {
   }
   const read=()=>{
     axios.post("http://localhost:3000/user/signup",input).then((response)=>{
-      console.log("success")
+      alert("successfully registerdd")
     })
   }
   return (
