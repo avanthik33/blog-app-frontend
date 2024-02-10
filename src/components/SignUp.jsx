@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 const SignUp = () => {
   const [input, setInput] = new useState([
@@ -18,7 +19,20 @@ const SignUp = () => {
   }
   const read=()=>{
     axios.post("http://localhost:3000/user/signup",input).then((response)=>{
-      alert("successfully registerdd")
+      if(response.data.status ==="success"){
+        alert("successfully registerd")
+        setInput({
+          name: "",
+          age: "",
+          mobileNo: "",
+          address: "",
+          pincode: "",
+          email: "",
+          password: "",
+        })
+      }else{
+        alert("somthing went wrong")
+      }
     })
   }
   return (
@@ -73,7 +87,8 @@ const SignUp = () => {
                 <button className="btn btn-success" onClick={read}>register</button>
               </div>
               <div className="col col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
-                <button className="btn btn-success">login</button>
+                <Link to="/signin" class="btn btn-primary">signin</Link>
+
               </div>
             </div>
           </div>
