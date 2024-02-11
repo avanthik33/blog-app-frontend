@@ -6,10 +6,12 @@ const ViewAllBlog = () => {
   const [data,setData] = new useState([])
   const read=()=>{
     
-    axios.post("http://localhost:3000/post/viewpost",data).then((response)=>{
+    axios.post("http://localhost:3000/post/viewall",data).then((response)=>{
+      console.log(response.data)
       setData(response.data)
     })
   }
+
   useEffect(()=>{read()},[])
   return (
     <div>
@@ -20,9 +22,8 @@ const ViewAllBlog = () => {
 
           <table class="table">
             <thead>
-              <tr>
-                
-                <th scope="col">userName</th>
+              <tr> 
+              <th scope="col">userName</th>
                 <th scope="col">commment</th>
                 <th scope="col">date</th>
               </tr>
@@ -32,9 +33,11 @@ const ViewAllBlog = () => {
               {
                 data.map((value,index)=>{
                   return <tr>
-                  <td>{value.name}</td>
+                  <td>{value.userId.name}</td>
                   <td>{value.post}</td>
                   <td>{value.postedDate}</td>
+
+                  
                 </tr>
                 })
               }
